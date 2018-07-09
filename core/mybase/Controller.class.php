@@ -22,11 +22,11 @@ class Controller
         $this->view=new Views();
         $this->view->view_dir="application/".Application::$group."/views/".strtolower(Application::$controller)."/";
     }
-//    protected function display($name=null){
-//        $this->view->display($name);
-//    }
-//    protected function  assign($name,$value){
-//        $this->view->assign($name,$value);
-//    }
+    protected function display($name=null){
+        $this->view->display($name);
+    }
+    protected function  assign($name,$value){
+        $this->view->assign($name,$value);
+    }
 
 }
