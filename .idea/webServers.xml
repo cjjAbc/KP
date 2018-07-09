@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="1f458411-868c-4c0b-b8e5-c89892910e1c" name="server" url="http://localhost/KP">
+        <fileTransfer port="0" mountedRoot="D:\wamp64\www\KP" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>

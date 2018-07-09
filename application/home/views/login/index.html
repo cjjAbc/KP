@@ -1,0 +1,279 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>Sliding Forms Widget a Flat Responsive Widget Template</title>
+<!-- For-Mobile-Apps-and-Meta-Tags -->
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="" />
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //For-Mobile-Apps-and-Meta-Tags -->
+
+<link href="<?php  echo _LOGIN_CSS_; ?>style.css" type="text/css" rel="stylesheet" media="all">
+<link href="<?php  echo _LOGIN_CSS_; ?>jquerysctipttop.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<h1>KP宠物商城</h1>
+<section>
+  <div class="controls w3l">
+    <div class="cbcontrol" id="cbControlRight"><</div>
+    <div class="cbcontrol" id="cbControlLeft">></div>
+    <div class="clear"></div>
+  </div>
+  <div class="stage">
+   
+    <div class="cbImage w3">
+		<h3>找回中心</h3>
+		<form action="#" method="post" id="form_get">
+			<div class="form-group">
+				<div class="alert alert-success" name="alertmess_get" id="alertmess_forgot" role="alert">
+				</div>
+			</div>
+			<input type="text" class="email" name="email_get" id="email_get" placeholder="Email" required="">
+			<input type="submit" class="done" id="btn_get" value="提交">
+		</form>
+		<a href="#" class="rterms">Terms and Conditions</a>
+	</div>
+    <div class="cbImage active signin agileits">
+		<h3>登录中心</h3>
+		<form action="" method="post" id="loginform">
+			<div class="form-group">
+				<div class="alert alert-success" name="alertmess" id="alertmess_login" role="alert">
+
+				</div>
+			</div>
+			<input type="text" name="uname" class="uname" id="uname" placeholder="Username" required="">
+			<input type="password" name="upwd" class="upwd" id="upwd" placeholder="Password" required="">
+			<div class="form-group">
+				<label for="remember"><input type="checkbox" name="remember" id="remember"> Remember Me</label>
+			</div>
+			<input type="submit" id="loginbtn" value="登录">
+		</form>
+	</div>
+    <div class="cbImage agileinfo">
+		<h3>注册中心</h3>
+		<form action="#" method="post" id="register">
+			<div class="form-group">
+				<div class="alert alert-success" name="alertmess" id="alertmess_reg" role="alert">
+
+				</div>
+			</div>
+			<input type="text" class="name" name="uname_reg" id="uname_reg"  placeholder="Username" required="">
+			<input type="password" class="password" name="upwd_reg"  id="upwd_reg" placeholder="Password" required="">
+			<input type="password" class="password" name="reupwd_reg"  id="reupwd_reg" placeholder="Confirm Password" required="">
+			<input type="text" class="email" name="uemail_reg" id="uemail_reg" placeholder="Email" required="">
+			<input type="submit" id="sub_reg" value="注册">
+		</form>
+	</div>
+    <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+  <div class="footer">
+  </div>
+</section>
+<script src="<?php  echo _LOGIN_JS_; ?>jquery-2.1.4.min.js"></script> 
+<script src="<?php  echo _LOGIN_JS_; ?>coverflow-slideshow.js"></script>
+<div style="text-align:center;"></div>
+<!--注册脚本begin-->
+<script type="text/javascript">
+
+    /**表单客户端验证*/
+    function checkName() {
+        var flag = false;//默认
+        if ($("#uname_reg").val() != "") {
+            flag = true;
+        }
+        $("#uname_reg").blur(function () {
+            if ($(this).val() == "") {
+                $("#alertmess_reg").html("用户名不允许为空！");
+            } else {
+                $.post(
+                    'index.php?g=home&c=user&a=checkuser',
+                    {"uname": $(this).val()},
+                    function (result) {
+                        if (result == 1) {
+                            $("#alertmess_reg").html("用户名已经被占用！");
+                        } else {
+                            $("#alertmess_reg").html("用户名可用！");
+                            flag = true;
+                        }
+                    }
+                );
+            }
+        }).focus(function () {
+            $("#alertmess_reg").html("Your info has been saved.");
+        });
+
+
+        return flag;
+    }
+
+    /**验证邮箱*/
+    function checkEmail() {
+        var flag = false;//默认
+        $("#uemail_reg").blur(function () {
+            if ($(this).val() == "") {
+                $("#alertmess_reg").html("邮箱不允许为空！");
+            } else {
+                flag = true;
+            }
+        }).focus(function () {
+            $("#alertmess_reg").html("Your info has been saved.");
+        });
+
+
+
+        if ($("#uemail_reg").val() != "") {
+            flag = true;
+        }
+
+        return flag;
+    }
+
+    /**密码验证*/
+    function checkPwd() {
+        var flag = false;//默认
+        $("#upwd_reg").blur(function () {
+            if ($(this).val() == "") {
+                $("#alertmess_reg").html("密码不允许为空！");
+            } else {
+                flag = true;
+            }
+        }).focus(function () {
+            $("#alertmess_reg").html("Your info has been saved.");
+        });
+
+        if ($("#upwd_reg").val() != "") {
+            flag = true;
+        }
+        return flag;
+    }
+
+    /**两次输入密码是否一致验证*/
+    function checkRePwd() {
+        var flag = false;//默认
+        $("#reupwd_reg").blur(function () {
+            if ($(this).val() == "") {
+                $("#alertmess_reg").html("确认密码不允许为空！");
+            } else {
+                flag = true;
+            }
+            if ($(this).val() != $("#reupwd_reg").val()) {
+                $("#alertmess_reg").html("两次密码不一致！");
+            }
+        }).focus(function () {
+            $("#alertmess_reg").html("Your info has been saved.");
+        });
+
+        if ($("#upwd_reg").val() == $("#reupwd_reg").val()) {
+            flag = true;
+        }
+
+        return flag;
+    }
+
+
+    $(function () {
+        checkName();
+        checkEmail();
+        checkPwd();
+        checkRePwd();
+
+        //点击提交按钮
+        $("#sub_reg").click(function () {
+            if (checkName() && checkEmail() && checkPwd() && checkRePwd()) {
+                $.post(
+                    'index.php?g=home&c=user&a=register',
+                    $("#register").serialize(),
+                    function (result) {
+                        $("#alertmess_reg").html(result.mess);
+                    },
+                    "json"
+                );
+                $("#register")[0].reset();
+            }
+            return false;
+        });
+    })
+</script>
+<!--注册脚本end-->
+<!--登录脚本begin-->
+<script type="text/javascript">
+    function check() {
+        var flag = true;
+        $("#uname").blur(function () {
+            if ($(this).val() == "") {
+                $("#alertmess_login").html("用户名不允许为空");
+                flag = false;
+                return;
+            }
+        }).focus(function () {
+            $("#alertmess_login").html("Your info has been saved.");
+
+        });
+        $("#upwd").blur(function () {
+            if ($(this).val() == "") {
+                $("#alertmess_login").html("密码不允许为空");
+                flag = false;
+                return;
+            }
+        }).focus(function () {
+            $("#alertmess_login").html("Your info has been saved.");
+
+        });
+        return true;
+    }
+
+    $(function () {
+        if (!check()) {
+            return false;
+        }
+        $("#loginbtn").click(function () {
+            $.post(
+                'index.php?g=home&c=user&a=login',
+                $("#loginform").serialize(),
+                function (result) {
+
+                    if (result.errno == 200) {
+                        alert(result.mess + "\n点击确认进入首页");
+                        window.location.href = "index.php";
+                    } else {
+                        $("#alertmess_login").html(result.mess);
+                    }
+                },
+                "json"
+            );
+
+            return false;
+        });
+    })
+
+</script>
+<!--登录脚本begin-->
+<!--忘记密码脚本begin-->
+<script type="text/javascript">
+    $(function () {
+        $("#btn_get").click(function () {
+            $.post(
+                'index.php?g=home&c=user&a=getEmail',
+                $("#form_get").serialize(),
+                function (result) {
+
+                    if (result.errno == 200) {
+                        alert(result.mess + "\n点击确认进入首页");
+                        window.location.href = "index.php";
+                    } else {
+                        $("#alertmess_forgot").html(result.mess);
+                    }
+                },
+                "json"
+            );
+
+            return false;
+        });
+    })
+
+</script>
+</body>
+</html>
