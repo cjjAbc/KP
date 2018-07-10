@@ -7,8 +7,6 @@
  */
 
 namespace application\home\controllers;
-
-
 use application\home\models\UserModel;
 use core\mybase\HomeGroupController;
 use core\mybase\MySession;
